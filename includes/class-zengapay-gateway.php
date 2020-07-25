@@ -110,11 +110,11 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 					'description' => __( 'The API key is generated in your account dashboard.', 'zengapay-pay-woo'),
 					'type' => 'textarea',
 					'desc_tip' => true,
-					'default' => __( 'The API key is generated in your account dashboard via https://dashboard.zengapay.com/', 'zengapay-pay-woo'),
+					'default' => sprintf( __( 'The API key is generated in your account dashboard via %s', 'zengapay-pay-woo'), esc_url( 'https://dashboard.zengapay.com/' ) ),
 				),
 				'secretKey' => array(
 					'title' => __( 'ZENGAPAY Secret Hash Key', 'zengapay-pay-woo'),
-					'description' => sprintf( __( 'The Secret Hash key is generated in your account dashboard via %s', 'zengapay-pay-woo'), esc_url( 'https://dashboard.zengapay.com/' ) ) ,
+					'description' => sprintf( __( 'The Secret Hash key is generated in your account dashboard via %s', 'zengapay-pay-woo'), esc_url( 'https://dashboard.zengapay.com/' ) ),
 					'type' => 'textarea',
 					'desc_tip' => true,
 					'default' => __( '', 'zengapay-pay-woo'),
@@ -127,7 +127,7 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 				),
 				'enable_for_virtual' => array(
 					'title'   => __( 'Accept for virtual orders', 'zengapay-pay-woo' ),
-					'label'   => __( 'Accept Zengapay if the order is virtual', 'zengapay-pay-woo' ),
+					'label'   => __( 'Accept ZENGAPAY if the order is virtual', 'zengapay-pay-woo' ),
 					'type'    => 'checkbox',
 					'default' => 'yes',
 				),
@@ -214,7 +214,7 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 			if ( $order->get_total() > 0 ) {
 	
 				// Mark as processing or on-hold (payment won't be taken until delivery).
-				$order->update_status( apply_filters( 'zengapay_woocommerce_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'wc-invoiced', $order ), __( 'Payments pending clearing via mobile moneu account.', 'woocommerce' ) );
+				$order->update_status( apply_filters( 'zengapay_woocommerce_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'wc-invoiced', $order ), __( 'Payments pending clearing via mobile money account.', 'woocommerce' ) );
 				
 				// Api Payments query.
 				$this->clear_payment_with_api( $this->payment_url, $this->apiKey, $order_id, $order );

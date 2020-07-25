@@ -56,15 +56,15 @@ function zengapay_add_webhook_endpoint_callback( $request_data ) {
         if ( $order->has_downloadable_item() ) {
             $order->payment_complete();
             $order->update_status( 'completed' );
-            $order->add_order_note('Zenga Payment was successful!');
+            $order->add_order_note('Payment was successful!');
         } else {
             $order->payment_complete();
             $order->update_status('processing');
-            $order->add_order_note('Zenga Payment was successful!');
+            $order->add_order_note('Payment was successful!');
         }
     } else {
         $order->update_status('failed');
-        $order->add_order_note('Zenga Payment Failed. Order is Cancelled!');
+        $order->add_order_note('Payment Failed. Order is Cancelled!');
     }
 
 	// Create Transaction Post Object.
