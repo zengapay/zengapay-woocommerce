@@ -50,8 +50,8 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 			$this->id                   = 'zengapay_payment';
 			$this->icon                 = apply_filters( 'woocommerce_zengapay_icon', plugins_url('/images/zengapay-logo.png', dirname( __FILE__, 1 ) ) );
 			$this->has_fields           = false;
-			$this->method_title         = __( 'Zengapay Payments', 'zengapay-pay-woo');
-			$this->method_description   = __( 'Zengapay Payments.', 'zengapay-pay-woo');
+			$this->method_title         = __( 'ZENGAPAY', 'zengapay-pay-woo');
+			$this->method_description   = __( 'ZENGAPAY.', 'zengapay-pay-woo');
 	
 			// Get settings.
 			$this->title              = $this->get_option( 'title' );
@@ -81,46 +81,46 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 				'enabled' => array(
 					'title' => __( 'Enable/Disable', 'zengapay-pay-woo'),
 					'type' => 'checkbox',
-					'label' => __( 'Enable or Disable Zengapay Payments', 'zengapay-pay-woo'),
+					'label' => __( 'Enable or Disable ZENGAPAY', 'zengapay-pay-woo'),
 					'default' => 'no'
 				),
 				'title' => array(
-					'title' => __( 'Zengapay Payments', 'zengapay-pay-woo'),
+					'title' => __( 'ZENGAPAY Checkout Title', 'zengapay-pay-woo'),
 					'type' => 'text',
-					'default' => __( 'Zengapay Payments', 'zengapay-pay-woo'),
+					'default' => __( 'ZENGAPAY', 'zengapay-pay-woo'),
 					'desc_tip' => true,
-					'description' => __( 'Add a new title for the Zengapay Payments Gateway that customers will see when they are in the checkout page.', 'zengapay-pay-woo')
+					'description' => __( 'Add a new title for the ZENGAPAY Gateway that customers will see when they are in the checkout page.', 'zengapay-pay-woo')
 				),
 				'description' => array(
-					'title' => __( 'Description', 'zengapay-pay-woo'),
+					'title' => __( 'ZENGAPAY Checkout Description', 'zengapay-pay-woo'),
 					'type' => 'textarea',
 					'default' => __( 'Please remit your payment to the shop to allow for the delivery to be made', 'zengapay-pay-woo'),
 					'desc_tip' => true,
-					'description' => __( 'Add a new title for the Zengapay Payments Gateway that customers will see when they are in the checkout page.', 'zengapay-pay-woo')
+					'description' => __( 'Add a new title for the ZENGAPAY Gateway that customers will see when they are in the checkout page.', 'zengapay-pay-woo')
 				),
 				'instructions' => array(
-					'title' => __( 'Instructions', 'zengapay-pay-woo'),
+					'title' => __( 'Customer Instructions', 'zengapay-pay-woo'),
 					'type' => 'textarea',
 					'default' => __( 'Your order has been received. Please check your Mobile Money Account to complete the transaction.', 'zengapay-pay-woo'),
 					'desc_tip' => true,
 					'description' => __( 'Instructions that will be added to the thank you page and order email', 'zengapay-pay-woo')
 				),
 				'apiKey' => array(
-					'title' => __( 'API Key', 'zengapay-pay-woo'),
+					'title' => __( 'ZENGAPAY API Key', 'zengapay-pay-woo'),
 					'description' => __( 'The API key is generated in your account dashboard.', 'zengapay-pay-woo'),
 					'type' => 'textarea',
 					'desc_tip' => true,
 					'default' => __( 'The API key is generated in your account dashboard via https://dashboard.zengapay.com/', 'zengapay-pay-woo'),
 				),
 				'secretKey' => array(
-					'title' => __( 'Secret Hash Key', 'zengapay-pay-woo'),
-					'description' => __( 'The Secret Hash key is generated in your account dashboard.', 'zengapay-pay-woo'),
+					'title' => __( 'ZENGAPAY Secret Hash Key', 'zengapay-pay-woo'),
+					'description' => sprintf( __( 'The Secret Hash key is generated in your account dashboard via %s', 'zengapay-pay-woo'), esc_url( 'https://dashboard.zengapay.com/' ) ) ,
 					'type' => 'textarea',
 					'desc_tip' => true,
-					'default' => __( 'The Secret Hash key is generated in your account dashboard via https://dashboard.zengapay.com/', 'zengapay-pay-woo'),
+					'default' => __( '', 'zengapay-pay-woo'),
 				),
 				'webhook_url' => array(
-					'title'   => __( 'Webhook URL', 'zengapay-pay-woo' ),
+					'title'   => __( 'ZENGAPAY Webhook URL', 'zengapay-pay-woo' ),
 					'label'   => sprintf( __( 'I have added <code>%s</code> as my WEBHOOK URL in ZENGAPAY Admin Dashboard.', 'text_domain' ), "$this->domain_url/wp-json/zengapay/v1/payments" ),
 					'type'    => 'checkbox',
 					'default' => 'yes',
@@ -214,7 +214,7 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 			if ( $order->get_total() > 0 ) {
 	
 				// Mark as processing or on-hold (payment won't be taken until delivery).
-				$order->update_status( apply_filters( 'woocommerce_zengapay_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'wc-invoiced', $order ), __( 'Payments failed. Please clear the order invoice.', 'woocommerce' ) );
+				$order->update_status( apply_filters( 'zengapay_woocommerce_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'wc-invoiced', $order ), __( 'Payments pending clearing via mobile moneu account.', 'woocommerce' ) );
 				
 				// Api Payments query.
 				$this->clear_payment_with_api( $this->payment_url, $this->apiKey, $order_id, $order );
