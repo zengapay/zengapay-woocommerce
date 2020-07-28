@@ -1,11 +1,11 @@
 <?php
 /**
  * 
- * Plugin Name: Zengapay for Woocommerce
+ * Plugin Name: ZENGAPAY for Woocommerce
  * Plugin URI: https://zengapay.com
  * Author: zengapay
- * Author URI: https://zengapay.co
- * Description: Zengapay for Woocommerce facilitates payment collection on your Woocommerce store via Mobile Money (Airtel, MTN) with your Zengapay account.
+ * Author URI: https://zengapay.com
+ * Description: ZENGAPAY for Woocommerce facilitates payment collection on your Woocommerce store via Mobile Money (Airtel, MTN) with your ZENGAPAY account.
  * Version: 0.1.0
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
