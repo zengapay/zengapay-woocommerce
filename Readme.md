@@ -1,6 +1,6 @@
-# zengapay Payments for WooCommerce 
+# ZENGAPAY for WooCommerce 
 
-zengapay Woocommerce Payments allows you to accept payment on your Woocommerce store via Mobile Money (Airtel, MTN) with your zengapay account.
+ZENGAPAY for Woocommerce allows you to accept payment on your Woocommerce store via Mobile Money (Airtel, MTN) with your zengapay account.
 
 ## License
 License: GPLv2 or later
