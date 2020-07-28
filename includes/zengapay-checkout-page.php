@@ -54,7 +54,7 @@ function zengapay_billing_phone_fields( $description, $payment_id ) {
         'zengapay_payment_phone_number',
         array(
             'type' => 'text',
-            'label' =>__( 'Enter Phone Number for Billing (Format: 256772123456 )', 'zengapay-pay-woo' ),
+            'label' =>__( 'Enter Phone Number e.g 256772123456', 'zengapay-pay-woo' ),
             'class' => array( 'form-row', 'form-row-wide', 'card-number' ),
             'required' => true,
         )
