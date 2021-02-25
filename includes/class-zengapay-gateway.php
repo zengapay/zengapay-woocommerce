@@ -309,7 +309,9 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 				'headers'      => array(
 					'Authorization' => 'Bearer' . ' ' . $apiKey
 				),
-				'body' 	       => $body
+				'body' 	       => $body,
+                'timeout'     => 60,
+                'sslverify' => false
 			);
 
 			$response = wp_remote_get( esc_url_raw( $url ), $arguments );
