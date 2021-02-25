@@ -23,7 +23,7 @@ function zengapay_add_webhook_endpoint_callback( $request_data ) {
 
 	// custom meta values
 	$transactionStatus         = $parameters['data']['transactionStatus'];
-	$ExternalReference         = $parameters['data']['externalTransactionReference'];
+	$ExternalReference         = $parameters['data']['transactionExternalReference'];
 	$transactionReference      = $parameters['data']['transactionReference'];
 	$MNOTransactionReferenceId = $parameters['data']['MNOTransactionReferenceId'];
 	$amount                    = $parameters['data']['amount'];
