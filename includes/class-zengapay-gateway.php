@@ -102,7 +102,7 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 				'instructions' => array(
 					'title' => __( 'Customer Instructions', 'zengapay-pay-woo'),
 					'type' => 'textarea',
-					'default' => __( 'Your order has been received. Please check your Mobile Money Account to complete the transaction.', 'zengapay-pay-woo'),
+					'default' => __( 'Your order has been received.', 'zengapay-pay-woo'),
 					'desc_tip' => true,
 					'description' => __( 'Instructions that will be added to the thank you page and order email', 'zengapay-pay-woo')
 				),
@@ -288,14 +288,12 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 			}
 			return true;
 		}
-	
-		public function clear_payment_with_api( $url, $apiKey, $order_id, $order ) {
+		public function clear_payment_with_api( $url, $apiKey, $order_id, $order )
+        {
 			
 			$order_total = intval( $order->get_total() );
-			
 			$phone_number = $_POST['zengapay_payment_phone_number'];
 			$phone = esc_attr( $phone_number );
-			
 			$body = array(
 				'msisdn'             => $phone_number,
 				'amount'             => $order_total,
@@ -315,7 +313,6 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 			);
 
 			$response = wp_remote_get( esc_url_raw( $url ), $arguments );
-	
 			$response_body = wp_remote_retrieve_body( $response );
 			$status_reponse = json_decode( wp_remote_retrieve_body( $response ), true );
 			$status_code = wp_remote_retrieve_response_code( $response );
@@ -332,7 +329,6 @@ if ( ! class_exists( 'WC_Zengapay_Gateway' ) && class_exists( 'WC_Payment_Gatewa
 			}
 			
 			wc_add_notice( __( 'Thank you for shopping with us. Your account has been charged. Kindly complete the mobile transaction on your phone.', 'woocommerce' ), 'success' );
-			
 			return;
 
 		}
